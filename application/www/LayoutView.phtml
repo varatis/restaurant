@@ -34,13 +34,31 @@
 <!-- Interface utilisateur -->
 <nav class="user-interface">
     <ul class="link-list">
-        <!-- Code HTML/PHP à écrire -->
+        <?php
+        $userSession = new UserSession();
+        ?>
+        <?php if ($userSession->isConnected()): ?>
+            <?php
+                $user = $userSession->getUser();
+            ?>
+            Bonjour, <?= $user['firstname'] ?>
+
+            <a href="<?= $requestUrl ?>/order">Commander</a>
+
+        <?php else: ?>
+            
+            <a href="<?= $requestUrl ?>/login">Se connecter</a>
+            
+        <?php endif ?>
+
+        Panier: <?= Cart::getProductNumber() ?>
+        
     </ul>
 </nav>
 
 <main>
     <!-- Affichage du template lié à la vue -->
-    <?php include $this->viewData['template'] ?>
+    <?php include $this->viewData['template']; ?>
 </main>
 
 <!-- Pied de page commun -->
@@ -56,5 +74,12 @@
 <!-- Code principal JavaScript de l'application -->
 <script src="<?= $wwwUrl ?>/js/main.js"></script>
 
+    <div>
+        <?php
+        Tools::pre($_SESSION);
+        ?>
+    </div>
+</body>
+</html>
 </body>
 </html>

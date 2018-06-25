@@ -7,6 +7,18 @@
 <table class="generic-table meal-list">
     <caption>Carte du restaurant</caption>
     <tbody>
-        <!-- Code HTML à écrire -->
+    	<?php
+//		var_dump($productList);
+
+		//Tools::pre($productList);
+		Tools::pre($wwwUrl);
+		?>
+		<?php foreach ($productList as $product): ?>
+			<tr>
+				<td><img style="width: 200px;" src="<?= $product['image'] ?>"></td>
+				<td><strong><?= $product['product_name'] ?></strong><p><?= $product['product_description'] ?></p></td>
+				<td class="number"><strong><?= $product['product_sellprice'] ?></strong>€</td>
+			</tr>
+		<?php endforeach ?>
     </tbody>
 </table>
